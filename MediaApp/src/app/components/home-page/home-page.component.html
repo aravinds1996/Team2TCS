@@ -1,13 +1,43 @@
 <div id="container">
-    <div style="padding-top: 65px;"id="weather">
-        <p >I am weather div</p>
+  <div style="padding-top: 55px;" class="row">
+    <div id="weather" style="padding-top: 10px;padding-left: 50px;">
+      Weather Report
     </div>
-    <hr>
+  </div>
     <div id="image">
-        <p> I am a carousel div </p>
+        <ngb-carousel *ngIf="images">
+            <ng-template ngbSlide>
+              <img class="mh-100" style="width: 100%; height: 90vh" [src]="images[0]" alt="Random first slide">
+              <div class="carousel-caption">
+                <h3>5 seconds between slides...</h3>
+              </div>
+            </ng-template>
+            <ng-template ngbSlide>
+              <img class="mh-100" style="width: 100%; height: 100vh"[src]="images[1]" alt="Random second slide">
+              <div class="carousel-caption">
+                <h3>No mouse events...</h3>
+              </div>
+            </ng-template>
+            <ng-template ngbSlide>
+              <img class="mh-100" style="width: 100%; height: 90vh"[src]="images[2]"  alt="Random third slide">
+              <div class="carousel-caption">
+                <h3>No keyboard...</h3>
+              </div>
+            </ng-template>
+          </ngb-carousel>      
     </div>
-    <hr>
-    <div id="news">
-        <p> I am news section div</p>
+    <div class="row">
+      <div class="column" style="background-color:#aaa;">
+        <h2> Latest News 1</h2>
+        <p>Some text..</p>
+      </div>
+      <div class="column" style="background-color:#bbb;">
+        <h2> Latest News 2</h2>
+        <p>Some text..</p>
+      </div>
+      <div class="column" style="background-color:#ccc;">
+        <h2> LatestNews 3</h2>
+        <p>Some text..</p>
+      </div>
     </div>
 </div>
