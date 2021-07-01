@@ -23,46 +23,14 @@
                                     <th>Points</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody *ngFor="let elem of euroCup">
                                 <tr>
-                                    <td>1</td>
-                                    <td class="text-left"> <img src="https://image.flaticon.com/icons/png/32/197/197583.png" alt="Brazil"><span> &nbsp;Belgium</span></td>
-                                    <td>6</td>
-                                    <td>6</td>
-                                    <td>0</td>
-                                    <td>10</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td class="text-left"> <img src="https://image.flaticon.com/icons/png/32/197/197565.png" alt="Denmark"><span> &nbsp;Denmark</span></td>
-                                    <td>6</td>
-                                    <td>5</td>
-                                    <td>1</td>
-                                    <td>8</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td class="text-left"> <img src="https://image.flaticon.com/icons/png/32/197/197485.png" alt="England"><span> &nbsp;England</span></td>
-                                    <td>6</td>
-                                    <td>4</td>
-                                    <td>2</td>
-                                    <td>6</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td class="text-left"> <img src="https://image.flaticon.com/icons/png/32/197/197571.png" alt="Spain"><span> &nbsp;Spain</span></td>
-                                    <td>6</td>
-                                    <td>3</td>
-                                    <td>3</td>
-                                    <td>4</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td class="text-left"> <img src="https://image.flaticon.com/icons/png/32/197/197540.png" alt="Switzerland"><span> &nbsp;Switzerland</span></td>
-                                    <td>6</td>
-                                    <td>2</td>
-                                    <td>4</td>
-                                    <td>2</td>
+                                    <td>{{elem.rank}}</td>
+                                    <td class="text-left"> <img src="{{elem.countryImage}}" alt="Brazil"><span> &nbsp;{{elem.countryName}}</span></td>
+                                    <td>{{elem.played}}</td>
+                                    <td>{{elem.won}}</td>
+                                    <td>{{elem.lost}}</td>
+                                    <td>{{elem.points}}</td>
                                 </tr>
                             </tbody>
                         </table>
