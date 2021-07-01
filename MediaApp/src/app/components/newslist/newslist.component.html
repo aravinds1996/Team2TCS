@@ -1,41 +1,37 @@
-<div class="p-3 mb-2 bg-success text-white center">Username : {{username}} &nbsp;&nbsp;  Email: {{email}}</div>
+<div class="p-3 mb-2 bg-success text-white center">Username : {{username}} &nbsp;&nbsp; Email: {{email}}</div>
 
-<h2>News List</h2>
-        <div class="table-responsive">
-          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover table-striped" width="50%" id="myTable" >
-          <thead class = "thead-dark">
-            <tr>
-              <th>Title</th>
-              <th>Description</th>
-              <th>Published At</th>
-              <th>Edit/Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-              
-          <tr *ngFor="let data of news">
-            <td>{{data.title}}</td>
-            <td>{{data.description}}</td>
-            <td>{{data.publishedAt}}</td>
-            <td>
-              <button 
-                type="button" 
-                class="update btn btn-warning"
-                data-toggle="modal" 
-                data-target="#myModal" 
-                id="edit"
-                routerLink="/editNews/{{data._id}}">
-                  Edit
-              </button>
-              <button 
-                type="button" 
-                id="delete" 
-                class="delete btn btn-danger" 
-                (click) ="handleDelete(data._id)"         
-                routerLink="/newsList">
-                Delete
-              </button>
-            </td>  
-          </tr>
-        </tbody>
-        </table>
+<div class="id" style="margin-left:12%;margin-right: 12%;">
+  <h1 style="margin-top:2+0px;margin-left: 20%;font-size: 32px;color:grey">News List</h1>
+  <div class="table-responsive">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-hover table-striped" width="100%"
+      id="myTable">
+      <thead class="thead-dark">
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Published At</th>
+          <th>Edit/Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let data of news">
+          <td>{{data.title}}</td>
+          <td>{{data.description}}</td>
+          <td>{{data.publishedAt}}</td>
+          <td>
+            <button type="button" class="update btn btn-warning" data-toggle="modal" data-target="#myModal" id="edit"
+              routerLink="/editNews/{{data._id}}">
+              <span class="fa fa-edit"></span>
+              Edit
+            </button>
+            <button style="margin-top:5px" type="button" id="delete" class="delete btn btn-danger"
+              (click)="handleDelete(data._id)" routerLink="/newsList">
+              <span class="fa fa-trash"></span>
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

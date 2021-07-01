@@ -2,3 +2,11 @@
     margin-left: auto; 
   margin-right: auto;
 }
+
+.dataTables_info {
+  margin-left:20% !important;
+}
+
+#myTable_info{
+  margin-left: 20% !important;
+}
