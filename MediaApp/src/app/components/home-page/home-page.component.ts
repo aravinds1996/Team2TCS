@@ -18,6 +18,9 @@ export class HomePageComponent implements OnInit {
   cityName: string='';
   desc: string='';
   temp: Number =0;
+  windSpeed :Number =0;
+  precipitation :Number=0;
+  oxy :Number=0;
   currentTime: any;
   newsDetails: any[]=[];
   
@@ -40,6 +43,9 @@ export class HomePageComponent implements OnInit {
       console.log("Api response is: ", JSON.stringify(response), (response))
         this.temp = response.main.temp;
         this.desc = response.weather[0].description;
+        this.windSpeed=40;
+        this.precipitation=84;
+        this.oxy=0.2;
         this.currentTime = new Date();
     });
 
