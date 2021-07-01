@@ -27,12 +27,14 @@ export class EditnewsComponent implements OnInit {
   ngOnInit(): void {
     this.myService.getUserName()
     .subscribe(
-      data => this.username= data.toString()
+      data => this.username= data.toString(),
+      error => this.router.navigate(['/main/login'])
     )
     console.log(this.username);
     this.myService.getEmail()
     .subscribe(
-      data => this.email= data.toString()
+      data => this.email= data.toString(),
+      error => this.router.navigate(['/main/login'])
     )
 
     this.newsForm = new FormGroup({
