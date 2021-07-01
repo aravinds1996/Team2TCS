@@ -13,7 +13,7 @@ var createError = require('http-errors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-const addNews = require('./routes/addNews')
+const newsRoute = require('./routes/newsRoute')
 // const auth = require('./routes/auth')
 
 const weatherUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=metric&cnt=5&appid=fbf712a5a83d7305c3cda4ca8fe7ef29";
@@ -37,7 +37,7 @@ app.use(express.urlencoded({ extended: false }))
 // parse application/json
 app.use(express.json())
 
-app.use('/news', addNews)
+app.use('/news', newsRoute)
 
 // app.use('/auth', auth)
 
