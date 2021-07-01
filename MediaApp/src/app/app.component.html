@@ -1,13 +1,18 @@
 
-<div *ngIf ="!navBarFlag">
+<div *ngIf ="!navBarFlag" class="container">
     <app-navbar></app-navbar>
 </div>
 <app-footer></app-footer>
 
-
+<div class="showChat" *ngIf="router.url == '/home'
+|| router.url == '/sports'
+|| router.url == '/contactUs'
+|| router.url == '/aboutUs'" >
 <div class="chatbox chatbox__button">
     <button type="button" (click)="openChat()">Chat</button>
 </div>
 <div *ngIf="chatFlag">
     <app-chat></app-chat>
+</div>
+
 </div>
