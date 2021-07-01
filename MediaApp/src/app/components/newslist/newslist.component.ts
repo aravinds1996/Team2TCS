@@ -76,7 +76,9 @@ export class NewslistComponent implements OnInit, OnDestroy {
   }
 
   handleDelete(id: any) {
-    this.newsService.removeNews(id)
+    if(confirm("Are you sure you want to delete this?"))
+    {
+      this.newsService.removeNews(id)
       .subscribe(
         () => 
         {
@@ -86,5 +88,8 @@ export class NewslistComponent implements OnInit, OnDestroy {
         err => console.log(err)
       )
   }
+  else{
+  }
+}
 
 }
