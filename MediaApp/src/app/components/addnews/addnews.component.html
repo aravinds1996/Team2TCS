@@ -66,7 +66,7 @@
 
       <div class="form-group">
         <mat-form-field style="width:100%;">
-        <input appHighlight type="text" id="publishedAt" matInput placeholder="Published At" formControlName="publishedAt" name="publishedAt" [ngClass]="{ 'is-invalid': submitted && fval.publishedAt.errors }">
+        <input appHighlight type="date" id="publishedAt" matInput placeholder="Published At" formControlName="publishedAt" name="publishedAt" [ngClass]="{ 'is-invalid': submitted && fval.publishedAt.errors }">
       </mat-form-field>
         <div *ngIf="submitted && fval.publishedAt.errors">
           <div *ngIf="fval.publishedAt.errors.required">
