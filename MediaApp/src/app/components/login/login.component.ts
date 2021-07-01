@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
   submitted = false ;
-  Message: String = '';
+  message: String = '';
 
   constructor(private _myservice: AuthenticationService,
     private _router: Router,
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('token', data.toString());
             this._router.navigate(['/addNews']);
           },
-          error => this.Message = 'Invalid Login Credentials'
+          error => this.message = 'Invalid Login Credentials'
         );
     }
   }
