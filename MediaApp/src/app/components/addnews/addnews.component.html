@@ -4,41 +4,80 @@
 
 <div class="p-3 mb-2 bg-success text-white center"><b>Username :</b> {{username}} &nbsp;&nbsp;<b>  Email:</b> {{email}}</div>
 
-<form (submit)="handleSubmit()">
-    <h1>Add News</h1>
+<div class="formcontainer">
+  <div class="formbody">
+<form style="width:100%;"[formGroup] ="addNewsForm" (ngSubmit)="addNews();">
+
+  <div class="header">Add News</div>
+
     <div class="form-group">
-      <label for="title">Title</label>
-      <input appHighlight type="text" id="title" class="form-control" name="title" [(ngModel)]="title">
+    <mat-form-field style="width: 100%;">
+      <input type="text" appHighlight formControlName="title" matInput placeholder="Title" id="title" name="title" [ngClass]="{ 'is-invalid': submitted && fval.title.errors }">
+      </mat-form-field> 
+      <div *ngIf="submitted && fval.title.errors">
+        <div *ngIf="fval.title.errors.required">
+            Title Name is required 
+        </div>
+    </div>  
     </div>
   
     <div class="form-group">
-      <label for="description">Description</label>
+      <mat-form-field style="width: 100%;">
       <textarea
         appHighlight
         id="description"
-        class="form-control"
+        formControlName="description"
+        matInput placeholder="Description"
+        
         rows="5"
         name="description"
-        [(ngModel)]="description"
-      ></textarea>
+        [ngClass]="{ 'is-invalid': submitted && fval.description.errors }" >
+    </textarea>
+  </mat-form-field>
+    <div *ngIf="submitted && fval.description.errors">
+      <div *ngIf="fval.description.errors.required">
+          Description is required 
+      </div>
+  </div> 
     </div>
 
     <div class="form-group">
-        <label for="url">Url</label>
-        <input appHighlight type="text" id="url" class="form-control" name="url" [(ngModel)]="url">
+      <mat-form-field style="width: 100%;">
+        <input appHighlight type="text" matInput placeholder="Url" formControlName="url" id="url" name="url" [ngClass]="{ 'is-invalid': submitted && fval.url.errors }">
+        </mat-form-field>
+        <div *ngIf="submitted && fval.url.errors">
+          <div *ngIf="fval.url.errors.required">
+              URL Name is required 
+          </div>
+      </div>    
       </div>
 
       <div class="form-group">
-        <label for="urlToImage">Url To Image</label>
-        <input appHighlight type="text" id="urlToImage" class="form-control" name="urlToImage" [(ngModel)]="urlToImage">
+        <mat-form-field style="width: 100%;">
+        <input appHighlight type="text" id="urlToImage" matInput placeholder="Url Image" formControlName="urlToImage" name="urlToImage" [ngClass]="{ 'is-invalid': submitted && fval.urlToImage.errors }">
+      </mat-form-field>
+        <div *ngIf="submitted && fval.urlToImage.errors">
+          <div *ngIf="fval.urlToImage.errors.required">
+              URL Image is required 
+          </div>
+      </div> 
+      
       </div>
 
       <div class="form-group">
-        <label for="publishedAt">Published At</label>
-        <input appHighlight type="text" id="publishedAt" class="form-control" name="publishedAt" [(ngModel)]="publishedAt">
+        <mat-form-field style="width:100%;">
+        <input appHighlight type="text" id="publishedAt" matInput placeholder="Published At" formControlName="publishedAt" name="publishedAt" [ngClass]="{ 'is-invalid': submitted && fval.publishedAt.errors }">
+      </mat-form-field>
+        <div *ngIf="submitted && fval.publishedAt.errors">
+          <div *ngIf="fval.publishedAt.errors.required">
+              Published At is required 
+          </div>
+      </div> 
+     
       </div>
   
-    <button class="btn btn-primary" onClick="alert('News Added!')">Add</button>
-    <button style="margin-left:20px" type="reset" class="btn btn-secondary">Reset</button>
+    <button class="btn btn-primary" >Add</button> &nbsp;
+    <button type=reset class="btn btn-warning">Reset</button>
   </form>
-  
+  </div>
+  </div>

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { NewsService } from 'src/app/services/news.service';
+
+
 
 @Component({
   selector: 'app-addnews',
@@ -10,16 +13,15 @@ import { NewsService } from 'src/app/services/news.service';
 })
 export class AddNewsComponent implements OnInit {
 
-  title: string = ''
-  description: string = ''
-  url: string = ''
-  urlToImage: string = ''
-  publishedAt: string = ''
-  username = '';
-  email = '';
+  addNewsForm! : FormGroup ;
+  submitted = false ;
+  username: string;
+  email: string;
+  message: string;
 
   constructor(private newsService: NewsService, private myService:AuthenticationService,
-    private _router: Router) { 
+    private _router: Router,
+    private formBuilder : FormBuilder) { 
       this.myService.getUserName()
     .subscribe(
       data => this.username= data.toString(),
@@ -34,26 +36,37 @@ export class AddNewsComponent implements OnInit {
     console.log(this.email);
     }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.addNewsForm = this.formBuilder.group(
+      {
+        title: ['', [Validators.required]],
+        description: ['', [Validators.required]],
+        url: ['', [Validators.required]],
+        urlToImage:['', [Validators.required]],
+        publishedAt :['', [Validators.required]]
+      }
+   
+    )
   }
 
-  handleSubmit() {
-    const data = {
-      title: this.title,
-      description: this.description,
-      url: this.url,
-      urlToImage: this.urlToImage,
-      publishedAt: this.publishedAt
-    }
+  get fval() { 
+    return this.addNewsForm.controls; 
+  }
 
-    this.newsService.addNews(data)
-      .subscribe(() => {
-        console.log('Task Added!')
-        this.title = ''
-        this.description = ''
-        this.url = ''
-        this.urlToImage = ''
-        this.publishedAt = ''
-      })
+  addNews() {
+    this.submitted=true;
+    if(this.addNewsForm.valid){
+      this.newsService.addNews(this.addNewsForm.value)
+      .subscribe(
+        data => this.message = "News Added",
+        error => this.message = "Failed to add news",
+        
+      );
+      alert("News Added!");
+      window.location.reload();
+    }
+    else{
+      return;
+    }
   }
 }

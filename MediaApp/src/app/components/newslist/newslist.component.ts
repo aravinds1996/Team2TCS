@@ -36,12 +36,14 @@ export class NewslistComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.myService.getUserName()
     .subscribe(
-      data => this.username= data.toString()
+      data => this.username= data.toString(),
+      error => this.router.navigate(['/main/login'])
     )
     console.log(this.username);
     this.myService.getEmail()
     .subscribe(
-      data => this.email= data.toString()
+      data => this.email= data.toString(),
+      error => this.router.navigate(['/main/login'])
     )
     const that = this;
     this.dtOptions = {
@@ -67,23 +69,18 @@ export class NewslistComponent implements OnInit, OnDestroy {
   getNews() {
     this.newsService.getNews().subscribe((data) => {
       console.log(data);
-      // if(data == null){
-      //   this.router.navigate(['/login']);
-      // }
       this.news = data 
       this.dtTrigger.next();
 
     })
   }
 
-  //make it so it refreshes page as well
   handleDelete(id: any) {
     this.newsService.removeNews(id)
       .subscribe(
         () => 
         {
           console.log('News Deleted');
-          // this.router.navigate(['/newsList']);
           window.location.reload();
         },
         err => console.log(err)

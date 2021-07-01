@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { AddNewsComponent } from './components/addnews/addnews.component';
-import { AdminnavbarComponent } from './components/adminnavbar/adminnavbar.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { EditnewsComponent } from './components/editnews/editnews.component';
 import { ErrorComponent } from './components/error/error.component';
