@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { NewsService } from 'src/app/services/news.service';
 
-
-
 @Component({
   selector: 'app-addnews',
   templateUrl: './addnews.component.html',

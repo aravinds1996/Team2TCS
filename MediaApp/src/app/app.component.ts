@@ -8,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'MediaApp';
   navBarFlag : any;
+  chatFlag: boolean = false;
 
   ngOnInit(){
 
+  }
+
+  openChat(){
+    this.chatFlag = !this.chatFlag
   }
 }

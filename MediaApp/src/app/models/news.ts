@@ -6,7 +6,6 @@ export class News {
   urlToImage: string;
   publishedAt: string;
 
-
   constructor(id: number, title: string, description = '',url: string,urlToImage: string,publishedAt: string ) {
     this._id = id
     this.title = title

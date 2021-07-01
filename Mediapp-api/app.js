@@ -3,6 +3,10 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
+const app = express()
+
+const http = require('http').createServer(app)
+const io  = require('socket.io')(http)
 // added by amrit
 var path = require('path');
 var createError = require('http-errors');
@@ -10,8 +14,10 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 const addNews = require('./routes/addNews')
+const auth = require('./routes/auth')
+
 const weatherUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=metric&cnt=5&appid=fbf712a5a83d7305c3cda4ca8fe7ef29";
-let port = 3300
+let port = 3000
 
 mongoose.connect(
     //'mongodb://mongo-db:27017/taskManager',
@@ -23,9 +29,7 @@ mongoose.connect(
     (err) => err ? console.log('Something got wrong', err) : console.log('DB Connected')
 )
 
-const app = express()
-
-app.use(cors())
+app.use(cors({origin: '*'}))
 
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }))
@@ -35,18 +39,30 @@ app.use(express.json())
 
 app.use('/news', addNews)
 
+app.use('/auth', auth)
+
+io.on('connection', (socket) => {
+    console.log('user connected');
+    socket.on('message', (msg)=>{
+        console.log(msg)
+        socket.broadcast.emit('message-broadcast',msg)
+    })
+})
+
+http.listen(port, () => {
+    console.log(`started on port: ${port}`)
+})
+
 app.get('/weather',(req,res) => {
     request(url, (err,response,body) =>{
         if(err){
-            console.log(err);
+            console.log(err)
         } else {
-           
-            const output = JSON.parse(body);
-            res.send(output);
+            const output = JSON.parse(body)
+            res.send(output)
         }
-    });
-});
-
+    })
+})
 
 // added by amrit
 // view engine setup
@@ -103,7 +119,6 @@ app.use(function(err, req, res, next) {
     }
   }
   
-  
    // Event listener for HTTP server "listening" event.
    
   
@@ -115,6 +130,4 @@ app.use(function(err, req, res, next) {
     debug('Listening on ' + bind);
   } 
 
-
 module.exports = app
-

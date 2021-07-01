@@ -16,6 +16,7 @@ import { AddNewsComponent } from './components/addnews/addnews.component';
 import { NewslistComponent } from './components/newslist/newslist.component';
 import { AdminnavbarComponent } from './components/adminnavbar/adminnavbar.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ChatComponent } from './components/chat/chat.component';
 import { EditnewsComponent } from './components/editnews/editnews.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
@@ -46,6 +47,7 @@ import { ErrorComponent } from './components/error/error.component';
     AdminnavbarComponent,
     LoginComponent,
     RegisterComponent,
+    ChatComponent,
     EditnewsComponent,
     NavbarComponent,
     MainDeskComponent,
