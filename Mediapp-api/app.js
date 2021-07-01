@@ -14,7 +14,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 const addNews = require('./routes/addNews')
-const auth = require('./routes/auth')
+// const auth = require('./routes/auth')
 
 const weatherUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=metric&cnt=5&appid=fbf712a5a83d7305c3cda4ca8fe7ef29";
 let port = 3000
@@ -39,7 +39,7 @@ app.use(express.json())
 
 app.use('/news', addNews)
 
-app.use('/auth', auth)
+// app.use('/auth', auth)
 
 io.on('connection', (socket) => {
     console.log('user connected');
