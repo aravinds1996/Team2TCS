@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormGroup, Validators,FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-contact-us',
@@ -8,14 +8,31 @@ import { NgForm } from '@angular/forms';
 })
 export class ContactUsComponent implements OnInit {
   submitted : boolean= false;
-  constructor() { }
+  successMessage: boolean =false;
+  myForm!: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.myForm = this.formBuilder.group(
+      {
+      fullName: ['', [Validators.required]],
+      email: ['', [Validators.required,Validators.email]],
+      number: ['',  [Validators.required, Validators.pattern("[0-9 ]{10}")]],
+      message: ['', Validators.required]
+    });
+
   }
 
-  addPost(form: NgForm){
+  get fval() { 
+    return this.myForm.controls; 
+  }
+
+  addPost(){
     this.submitted= true;
-    console.log("what is form",form)
-    form.resetForm();
+    if(this.myForm.valid){
+      this.successMessage = true;
+      console.log("Form with empty is valid")
+    }
   }
 }

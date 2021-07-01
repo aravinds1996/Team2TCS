@@ -25,15 +25,20 @@
                     <div class="card-body p-3">
 
                         <!--Body-->
-                        <form #myForm="ngForm" (ngSubmit)="addPost(myForm)">
+                        <form [formGroup]="myForm" (ngSubmit)="addPost()">
                             <div class="form-group">
                                 <label>Your Name</label>
                                 <div class="input-group">
                                     <div style="padding-top: 7px;padding-right: 5px;"
                                         class="input-group-addon bg-light"><i class="fa fa-user text-secondary"></i>
                                     </div>
-                                    <input type="text" class="form-control" id="inlineFormInputGroupUsername"
+                                    <input formControlName="fullName" type="text" class="form-control" id="inlineFormInputGroupUsername" [ngClass]="{ 'is-invalid': submitted && fval.fullName.errors }"
                                         placeholder="Full Name">
+                                        <div *ngIf="submitted && fval.fullName.errors">
+                                            <div *ngIf="fval.fullName.errors.required" class="text-danger">
+                                                &nbsp;  &nbsp;User Name is required 
+                                            </div>
+                                        </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -42,8 +47,13 @@
                                     <div style="padding-top: 7px;padding-right: 5px;"
                                         class="input-group-addon bg-light"><i class="fa fa-envelope text-secondary"></i>
                                     </div>
-                                    <input type="text" class="form-control" id="inlineFormInputGroupUsername"
+                                    <input type="text" class="form-control" id="inlineFormInputGroupUsername" formControlName="email" [ngClass]="{ 'is-invalid': submitted && fval.email.errors }"
+
                                         placeholder="Email">
+                                    <div *ngIf="submitted && fval.email.errors" class="text-danger">
+                                        <div *ngIf="fval.email.errors.required"> &nbsp;  &nbsp;Email is required</div>
+                                        <div *ngIf="fval.email.errors.email"> &nbsp;  &nbsp;Enter a valid email address , example : king@gmail.com</div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -52,8 +62,12 @@
                                     <div style="padding-top: 7px;padding-right: 5px;"
                                         class="input-group-addon bg-light"><i
                                             class="fa fa-phone prefix text-secondary"></i></div>
-                                    <input type="text" class="form-control" id="inlineFormInputGroupUsername"
+                                    <input type="text" class="form-control" id="inlineFormInputGroupUsername" formControlName="number" [ngClass]="{ 'is-invalid': submitted && fval.number.errors }"
                                         placeholder="Phone Number">
+                                        <div *ngIf="submitted && fval.number.errors" class="text-danger"> 
+                                            <div *ngIf="fval.number.errors.required">&nbsp;  &nbsp;Contact Number is required </div>
+                                            <div *ngIf="fval.number.errors.pattern"> &nbsp;  &nbsp;Invalid Phone number</div>
+                                        </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -62,7 +76,12 @@
                                     <div style="padding-top: 7px;padding-right: 5px;"
                                         class="input-group-addon bg-light"><i class="fa fa-pencil text-secondary"></i>
                                     </div>
-                                    <textarea class="form-control"></textarea>
+                                    <textarea class="form-control" formControlName="message" [ngClass]="{ 'is-invalid': submitted && fval.message.errors }"></textarea>
+                                    <div *ngIf="submitted && fval.message.errors" class="text-danger">
+                                        <div *ngIf="fval.message.errors.required">
+                                            &nbsp;  &nbsp;Message is required 
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -70,7 +89,7 @@
                                 <button type="submit" class="btn btn-secondary btn-block rounded-0 py-2"
                                     >Submit</button>
                             </div>
-                            <div *ngIf="submitted" style="margin-top: 20px;" class="alert alert-info" role="alert">
+                            <div *ngIf="successMessage" style="margin-top: 20px;" class="alert alert-info" role="alert">
                                 Your message has been sent
                             </div>
                         </form>
