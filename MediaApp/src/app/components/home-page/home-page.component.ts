@@ -22,6 +22,7 @@ export class HomePageComponent implements OnInit {
   precipitation :Number=0;
   oxy :Number=0;
   currentTime: any;
+  otherSky: boolean = false;
   newsDetails: any[]=[];
   
   constructor(config: NgbCarouselConfig, 
@@ -43,6 +44,9 @@ export class HomePageComponent implements OnInit {
       console.log("Api response is: ", JSON.stringify(response), (response))
         this.temp = response.main.temp;
         this.desc = response.weather[0].description;
+        if(this.desc != 'clear sky'){
+          this.otherSky= true;
+        }
         this.windSpeed=40;
         this.precipitation=84;
         this.oxy=0.2;

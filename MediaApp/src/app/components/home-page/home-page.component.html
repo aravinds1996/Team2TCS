@@ -21,7 +21,9 @@
                             <p class="my-1"> <i class="fa fa-tint mr-2" aria-hidden="true"></i> <span> {{precipitation}}% </span> </p>
                             <p class="my-1"> <img src="https://i.imgur.com/wGSJ8C5.png" height="17px"> <span>{{oxy}}h </span> </p>
                         </div>
-                        <div> <img src="https://i.imgur.com/Qw7npIg.png" width="100px"> </div>
+                        <div *ngIf = "!otherSky"> <img src="https://i.imgur.com/Qw7npIg.png" width="100px"> </div>
+                        <div *ngIf = "otherSky">  <img src="https://image.flaticon.com/icons/png/128/1247/1247109.png" width="100px"> </div>
+
                     </div>
                 </div>
             </div>
